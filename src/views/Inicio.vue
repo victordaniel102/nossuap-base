@@ -1,7 +1,7 @@
 <template>
   <div class="inicio">
     <v-toolbar color="grey darken-4" dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"><i class="fas fa-bars"></i></v-app-bar-nav-icon>
       <v-toolbar-title>NOSSUAP</v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -9,7 +9,7 @@
         <v-icon>person</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-navigation-drawer v-model="drawer" absolute left>
+    <v-navigation-drawer v-model="drawer" fixed left>
       <v-list-item-group v-model="item" color="primary">
         <v-list-item v-for="(item, i) in items" :key="i">
           <v-list-item-icon>
@@ -17,7 +17,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
+            <v-list-item-title v-text="item.text" @click.stop="drawer = !drawer"></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
@@ -58,10 +58,7 @@
       </div>
     </div>
 
-    <v-footer
-    dark
-    padless
-  >
+    <v-footer dark padless>
     <v-card flat tile class="indigo lighten-1 white--text">
       <v-card-text>
         <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
@@ -88,6 +85,8 @@
     data: () => ({
       drawer: false,
       group: null,
+
+      // SIDENAV
       item: 1,
       items: [
         { text: 'Horários', icon: 'mdi-clock' },
@@ -96,6 +95,8 @@
         { text: 'Turmas', icon: 'mdi-flag' },
         { text: 'Agenda', icon: 'mdi-flag' }
       ],
+
+      // FOOTER
       icons: [
         'fab fa-facebook',
         'fab fa-twitter',
